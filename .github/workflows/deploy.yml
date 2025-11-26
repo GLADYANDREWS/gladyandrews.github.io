@@ -9,34 +9,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repository
       - uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: glady-andrews-main
 
-      # Step 4: Build the project
       - name: Build project
         run: npm run build
+        working-directory: glady-andrews-main
 
-      # Step 5: Configure Git for GitHub Pages
-      - name: Configure Git for GitHub Pages
-        run: |
-          git config --global user.name "GLADYANDREWS"
-          git config --global user.email "163230124+GLADYANDREWS@users.noreply.github.com"
-
-      # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist       # Folder to deploy
-          branch: main      # Deploy to this branch (default branch)
-          clean: true       # Remove old files before deploying
-          token: ${{ secrets.GH_PAT }}  # ← Reference the secret, NOT your actual token
+          folder: glady-andrews-main/dist
+          branch: gh-pages
+          clean: true
+          token: ${{ secrets.GH_PAT }}
