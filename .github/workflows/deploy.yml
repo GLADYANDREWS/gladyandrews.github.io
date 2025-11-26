@@ -30,7 +30,7 @@ jobs:
       - name: Configure Git for GitHub Pages
         run: |
           git config --global user.name "GLADYANDREWS"
-          git config --global user.email "your-email@example.com"
+          git config --global user.email "163230124+GLADYANDREWS@users.noreply.github.com"
 
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
@@ -39,3 +39,4 @@ jobs:
           folder: dist       # Folder to deploy
           branch: main      # Deploy to this branch (default branch)
           clean: true       # Remove old files before deploying
+          token: ${{ secrets.GH_PAT }}  # ← Reference the secret, NOT your actual token
