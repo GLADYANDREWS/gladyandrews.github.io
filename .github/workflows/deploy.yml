@@ -31,3 +31,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
+          branch: main   # deploy directly from main
+          clean: true    # removes old files before deploying
