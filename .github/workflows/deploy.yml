@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your code
+      # Step 1: Checkout your repository
       - uses: actions/checkout@v3
 
-      # Step 2: Install Node.js
-      - name: Install Node
+      # Step 2: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -23,13 +23,19 @@ jobs:
         run: npm install
 
       # Step 4: Build the project
-      - name: Build the project
+      - name: Build project
         run: npm run build
 
-      # Step 5: Deploy to GitHub Pages
+      # Step 5: Configure Git for GitHub Pages
+      - name: Configure Git for GitHub Pages
+        run: |
+          git config --global user.name "GLADYANDREWS"
+          git config --global user.email "your-email@example.com"
+
+      # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist
-          branch: main   # deploy directly from main
-          clean: true    # removes old files before deploying
+          folder: dist       # Folder to deploy
+          branch: main      # Deploy to this branch (default branch)
+          clean: true       # Remove old files before deploying
